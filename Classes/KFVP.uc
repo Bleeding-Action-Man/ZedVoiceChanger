@@ -16,7 +16,7 @@ function Initialized()
 	// FleshPound
 	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.FP_Rage');
 	S.Sounds.Length = 1;
-	S.Sounds[0] = LoadSound("Godzilla_Rage");
+	S.Sounds[0] = LoadSound("FP_godzilla_rage");
 }
 
 function NotifyLevelChange()

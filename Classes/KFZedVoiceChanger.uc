@@ -5,7 +5,7 @@
 // https://steamcommunity.com/id/Vel-San/
 //=============================================================================
 
-Class KFGodzillaRageFP extends Mutator;
+Class KFZedVoiceChanger extends Mutator;
 
 function PreBeginPlay()
 {
@@ -23,9 +23,9 @@ simulated function Tick( float Delta )
 
 defaultproperties
 {
-     GroupName="KF-GodZillaVP"
-     FriendlyName="Godzilla FP Rage"
-     Description="Changes the Fleshpound Rage Sound to GodZilla Screech"
+     GroupName="KF-VoiceChanger"
+     FriendlyName="Voice Changer Mut"
+     Description="Changes some ZED Voices (e.g. FP Rage); By Vel-San"
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
 }
