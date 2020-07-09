@@ -1,2 +1,5 @@
 # KF-GodzillaRageFP
-Change FP Rage sound to 2004 Godzilla Screech! [Server-Side]
+
+Changes some ZED Voices [Server-Side]
+
+- [Steam WorkShop](https://steamcommunity.com/id/Vel-San/myworkshopfiles/)

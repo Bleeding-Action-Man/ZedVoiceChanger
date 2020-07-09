@@ -1,10 +1,20 @@
-This Mutator replace the FP Rage sound with the 2004 Godzilla Screech!
+This Mutator replaces:
+
+- Fleshpound rage sound with '2004 Godzilla Screech'
+- Scrake Attacks (When he's screwing you witht he saw) to KF2 Scrake Sounds ( 3 Different Effects )
+- Patty Entrance and Entrance Scream with:
+    - Catch me outside how about that
+    - It's Joooooohhhhnnn Cena
+    - I will find you and i will kill you
+    - I can't Belive you've done this!
+    - Jojo's NANI (Entrance Scream)
 
 NOTE: This works server-side too. Meaning any player who joins your server will have the sound effect as well
+NOTE: Based off Marco's Classic Zeds Mut, edited by me to support Sounds instead of SoundGroups only
 
 [b][u]Features that might be added[/u][/b]
 
-- Change of mutator logic, instead of FP Sound change, i might change other sound effects for other ZEDs too
+- I will always update this whenver i have time or find a new sound that suits a ZED. Suggestions are welcome too!
 
 [b][u]Number Of Files[/u][/b]
 
@@ -12,8 +22,8 @@ NOTE: This works server-side too. Meaning any player who joins your server will 
 
 [b][u]File Names[/u][/b]
 
-- \System\KFGodzillaRageFP.u
-- \System\KFGodzillaRageFP.ucl
+- \System\KFZedVoiceChanger.u
+- \System\KFZedVoiceChanger.ucl
 
 - \Sounds\KF_VP.uax
 
@@ -25,7 +35,7 @@ NOTE: This works server-side too. Meaning any player who joins your server will 
 
 [b][u]Class Names[/u][/b]
 
-- Mut: KFGodzillaRageFP.KFGodzillaRageFP
+- Mut: KFZedVoiceChanger.KFZedVoiceChanger
 
 [b][u]Known Bugs[/u][/b]
 
@@ -33,6 +43,6 @@ You Tell Me.
 
 [b][u]Manual Download Links (Recommended)[/u][/b]
 
-You can find it under 'Not Whitelisted' folder named 'KF-GodzillaRageFP-v1.0'
+You can find it under 'Not Whitelisted' folder named 'KF-KFZedVoiceChanger-v1.0'
 
 MEGA Link: https://mega DOT nz/folder/YDoEmKiC#s6FGAtgh40-TvB4bHsLaMQ
