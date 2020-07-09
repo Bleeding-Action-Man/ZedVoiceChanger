@@ -13,10 +13,33 @@ function Initialized()
 {
 	local SoundGroup S;
 
-	// FleshPound
+	// Scrake - KF2 Scrake
+	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Scrake_Attack');
+	S.Sounds.Length = 3;
+	S.Sounds[0] = LoadSound("ScrakeAttack1");
+	S.Sounds[1] = LoadSound("ScrakeAttack2");
+	S.Sounds[2] = LoadSound("ScrakeAttack3");
+
+	// FleshPound - Godzilla
 	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.FP_Rage');
 	S.Sounds.Length = 1;
 	S.Sounds[0] = LoadSound("FP_godzilla_rage");
+
+	// Patty
+	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance');
+	S.Sounds.Length = 4;
+	S.Sounds[0] = LoadSound("PattyEntrance1");
+	S.Sounds[1] = LoadSound("PattyEntrance2");
+	S.Sounds[2] = LoadSound("PattyEntrance3");
+	S.Sounds[3] = LoadSound("PattyEntrance4");
+	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
+	S.Sounds.Length = 1;
+	S.Sounds[0] = LoadSound("PattyEntrance_Scream");
+	
+	Class'ZombieScrake'.Default.TransientSoundVolume = 2.5f;
+	Class'ZombieScrake'.Default.TransientSoundRadius = 1500.f;
+	Class'ZombieFleshPound'.Default.TransientSoundVolume = 2.f;
+	Class'ZombieFleshPound'.Default.TransientSoundRadius = 2000.f;
 }
 
 function NotifyLevelChange()
@@ -27,6 +50,11 @@ function NotifyLevelChange()
 	for( i=0; i<Cache.Length; ++i )
 		Cache[i].S.Sounds = Cache[i].L;
 	Cache.Length = 0;
+
+	Class'ZombieScrake'.Default.TransientSoundVolume = 2.f;
+	Class'ZombieScrake'.Default.TransientSoundRadius = 500.f;
+	Class'ZombieFleshPound'.Default.TransientSoundVolume = 1.f;
+	Class'ZombieFleshPound'.Default.TransientSoundRadius = 500.f;
 
 }
 
@@ -40,6 +68,7 @@ final function CacheSound( out SoundGroup S, SoundGroup In )
 	Cache[i].S = S;
 	Cache[i].L = S.Sounds;
 }
+
 final function CacheCopySound( SoundGroup S, SoundGroup Src )
 {
 	CacheSound(S,S);
