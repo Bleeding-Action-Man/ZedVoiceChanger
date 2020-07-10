@@ -2,6 +2,8 @@ Class KFVP extends Interaction;
 
 const VoicePackageName="KF_VP";
 
+var bool bSiren, bScrake, bFleshP, bPatty;
+
 struct FSoundCacheType
 {
 	var SoundGroup S;
@@ -13,28 +15,54 @@ function Initialized()
 {
 	local SoundGroup S;
 
+	// Bool Vars to check if enabled or disabled
+	// bSiren = class'KFZedVoiceChanger'.default.bSiren;
+	bScrake = class'KFZedVoiceChanger'.default.bScrake;
+	bFleshP = class'KFZedVoiceChanger'.default.bFleshP;
+	bPatty = class'KFZedVoiceChanger'.default.bPatty;
+
+	// Siren
+	/*if (bSiren){
+		log("-----|| Siren Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.siren.Siren_AttackScream');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("Siren_Demon_Scream");
+	}*/
+
 	// Scrake - KF2 Scrake
-	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Scrake_Attack');
-	S.Sounds.Length = 3;
-	S.Sounds[0] = LoadSound("ScrakeAttack1");
-	S.Sounds[1] = LoadSound("ScrakeAttack2");
-	S.Sounds[2] = LoadSound("ScrakeAttack3");
+	if (bScrake){
+		log("-----|| Scrake Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Scrake_Attack');
+		S.Sounds.Length = 3;
+		S.Sounds[0] = LoadSound("ScrakeAttack1");
+		S.Sounds[1] = LoadSound("ScrakeAttack2");
+		S.Sounds[2] = LoadSound("ScrakeAttack3");
+	}
+	
 
 	// FleshPound - Godzilla
-	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.FP_Rage');
-	S.Sounds.Length = 1;
-	S.Sounds[0] = LoadSound("FP_godzilla_rage");
+	if (bFleshP){
+		log("-----|| Fleshpound Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.FP_Rage');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("FP_godzilla_rage");
+	}
+
 
 	// Patty
-	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance');
-	S.Sounds.Length = 4;
-	S.Sounds[0] = LoadSound("PattyEntrance1");
-	S.Sounds[1] = LoadSound("PattyEntrance2");
-	S.Sounds[2] = LoadSound("PattyEntrance3");
-	S.Sounds[3] = LoadSound("PattyEntrance4");
-	CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
-	S.Sounds.Length = 1;
-	S.Sounds[0] = LoadSound("PattyEntrance_Scream");
+	if (bPatty){
+		log("-----|| Patty Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance');
+		S.Sounds.Length = 4;
+		S.Sounds[0] = LoadSound("PattyEntrance1");
+		S.Sounds[1] = LoadSound("PattyEntrance2");
+		S.Sounds[2] = LoadSound("PattyEntrance3");
+		S.Sounds[3] = LoadSound("PattyEntrance4");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("PattyEntrance_Scream");
+	}
+	
 	
 	Class'ZombieScrake'.Default.TransientSoundVolume = 2.5f;
 	Class'ZombieScrake'.Default.TransientSoundRadius = 1500.f;

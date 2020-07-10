@@ -8,9 +8,10 @@ This Mutator replaces:
     - I will find you and i will kill you
     - I can't Belive you've done this!
     - Jojo's NANI (Entrance Scream)
+- [strike]Siren has a Demon Screech for the scream[/strike] Disabled for now
 
 NOTE: This works server-side too. Meaning any player who joins your server will have the sound effect as well
-NOTE: Based off Marco's Classic Zeds Mut, edited by me to support Sounds instead of SoundGroups only
+NOTE: Based off Marco's Classic Zeds Mut, edited by me to support Sounds instead of SoundGroups only and made each sound selectable instead of changing everything at once
 
 [b][u]Features that might be added[/u][/b]
 
