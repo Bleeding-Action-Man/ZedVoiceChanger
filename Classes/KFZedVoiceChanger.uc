@@ -7,6 +7,8 @@
 
 Class KFZedVoiceChanger extends Mutator config(KFZedVoiceChanger);
 
+#exec OBJ LOAD FILE=KF_VP.uax
+
 var() config bool bSiren, bScrake, bFleshP, bPatty, bBloat;
 
 function PreBeginPlay()

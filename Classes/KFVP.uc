@@ -57,6 +57,12 @@ function Initialized()
 		S.Sounds[0] = LoadSound("BoomerPop1");
 		S.Sounds[1] = LoadSound("BoomerPop2");
 		S.Sounds[2] = LoadSound("BoomerPop3");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Bloat_Challenge');
+		S.Sounds.Length = 4;
+		S.Sounds[0] = LoadSound("BloatChallenge1");
+		S.Sounds[1] = LoadSound("BloatChallenge2");
+		S.Sounds[2] = LoadSound("BloatChallenge3");
+		S.Sounds[3] = LoadSound("BloatChallenge4");
 		class'ZombieBloat_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.BoomerPop1';
 		log("-----|| Default Bloat Headless Sound: " $class'ZombieBloat_STANDARD'.default.HeadLessDeathSound$ " ||-----");
 	}
