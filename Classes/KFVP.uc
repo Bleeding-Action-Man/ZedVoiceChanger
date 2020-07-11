@@ -2,7 +2,7 @@ Class KFVP extends Interaction;
 
 const VoicePackageName="KF_VP";
 
-var bool bSiren, bScrake, bFleshP, bPatty;
+var bool bSiren, bScrake, bFleshP, bPatty, bBloat;
 
 struct FSoundCacheType
 {
@@ -20,6 +20,7 @@ function Initialized()
 	bScrake = class'KFZedVoiceChanger'.default.bScrake;
 	bFleshP = class'KFZedVoiceChanger'.default.bFleshP;
 	bPatty = class'KFZedVoiceChanger'.default.bPatty;
+	bBloat = class'KFZedVoiceChanger'.default.bBloat;
 
 	// Siren
 	/*if (bSiren){
@@ -48,6 +49,17 @@ function Initialized()
 		S.Sounds[0] = LoadSound("FP_godzilla_rage");
 	}
 
+	// Bloat - Explosion
+	if (bBloat){
+		log("-----|| Bloat Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Bloat_DeathPop');
+		S.Sounds.Length = 3;
+		S.Sounds[0] = LoadSound("BoomerPop1");
+		S.Sounds[1] = LoadSound("BoomerPop2");
+		S.Sounds[2] = LoadSound("BoomerPop3");
+		class'ZombieBloat_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.BoomerPop1';
+		log("-----|| Default Bloat Headless Sound: " $class'ZombieBloat_STANDARD'.default.HeadLessDeathSound$ " ||-----");
+	}
 
 	// Patty
 	if (bPatty){
@@ -62,7 +74,6 @@ function Initialized()
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("PattyEntrance_Scream");
 	}
-	
 	
 	Class'ZombieScrake'.Default.TransientSoundVolume = 2.5f;
 	Class'ZombieScrake'.Default.TransientSoundRadius = 1500.f;

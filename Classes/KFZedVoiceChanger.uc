@@ -7,19 +7,20 @@
 
 Class KFZedVoiceChanger extends Mutator config(KFZedVoiceChanger);
 
-var() config bool bSiren, bScrake, bFleshP, bPatty;
+var() config bool bSiren, bScrake, bFleshP, bPatty, bBloat;
 
 function PreBeginPlay()
 {
 	AddToPackageMap();
 	AddToPackageMap(Class'KFVP'.Static.GetVoicePackage());
 }
+
 simulated function Tick( float Delta )
 {
 	// Make sure client did download the voice pack too.
-	if( Level.NetMode!=NM_DedicatedServer)
+	if( Level.NetMode!=NM_DedicatedServer){
 		Class'KFVP'.Static.InitializeSoundsFor(Level.GetLocalPlayerController());
-
+	}
 	Disable('Tick');
 }
 
@@ -30,6 +31,8 @@ static function FillPlayInfo(PlayInfo PlayInfo)
     PlayInfo.AddSetting("KFZedVoiceChanger", "bScrake", "Scrake", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bFleshP", "FleshPound", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bPatty", "Patty Daddy", 0, 0, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bBloat", "Bloat", 0, 0, "check");
+
 }
 
 static function string GetDescriptionText(string SettingName)
@@ -44,6 +47,8 @@ static function string GetDescriptionText(string SettingName)
 			return "Replaces Fleshpound rage with Godzilla Scream";
 		case "bPatty":
 			return "Memes. Just MEMES.";
+		case "bBloat":
+			return "L4D2 Boomer Explosion & Idle Talking";
 		default:
 			return Super.GetDescriptionText(SettingName);
 	}
@@ -54,7 +59,7 @@ defaultproperties
 	// Mut Vars
      GroupName="KF-ZedVoiceChanger"
      FriendlyName="ZED Voice Changer Mut"
-     Description="Changes Fleshpound, Scrake & Patriach Attack Sound Effects - More sounds to be added soon!"
+     Description="Changes some voice-lines sounds for some ZEDs - More sounds to be added soon!"
      bAlwaysRelevant=True
      RemoteRole=ROLE_SimulatedProxy
 
@@ -63,4 +68,5 @@ defaultproperties
 	bScrake=True
 	bFleshP=True
 	bPatty=True
+	bBloat=True
 }
