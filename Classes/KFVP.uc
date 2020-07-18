@@ -52,28 +52,17 @@ function Initialized()
 	// ZED Gib Sound - Remove Sound
 	if (bGib){
 		MutLog("-----|| Gib Custom Sound Enabled ||-----");
-		class'ZombieClot_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieCrawler_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieFleshpound_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieGorefast_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieHusk_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieScrake_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieSiren_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
-		class'ZombieStalker_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		CacheSound(S,SoundGroup'KF_EnemyGlobalSnd.Zomb_HeadlessDie');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("NoSound");
 	}
 
 	// ZED Decap - Pop Sound
 	if (bDecap){
 		MutLog("-----|| Decap Custom Sound Enabled ||-----");
-		class'ZombieBloat_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieClot_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieCrawler_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieFleshpound_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieGorefast_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieHusk_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieScrake_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieSiren_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
-		class'ZombieStalker_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		CacheSound(S,SoundGroup'KF_EnemyGlobalSnd.Generic_Decap');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("DecapPop");
 	}
 
 	// Scrake - KF2 Scrake
@@ -108,8 +97,6 @@ function Initialized()
 		S.Sounds[1] = LoadSound("BloatChallenge2");
 		S.Sounds[2] = LoadSound("BloatChallenge3");
 		S.Sounds[3] = LoadSound("BloatChallenge4");
-		class'ZombieBloat_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.BoomerPop1';
-	    // MutLog("-----|| Default Bloat Headless Sound: " $class'ZombieBloat_STANDARD'.default.HeadLessDeathSound$ " ||-----");
 	}
 
 	// Patty
