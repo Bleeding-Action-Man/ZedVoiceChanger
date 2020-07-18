@@ -1,8 +1,7 @@
 Class KFVP extends Interaction;
 
 const VoicePackageName="KF_VP";
-
-var bool bSiren, bScrake, bFleshP, bPatty, bBloat;
+var bool bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap;
 
 struct FSoundCacheType
 {
@@ -21,18 +20,65 @@ function Initialized()
 	bFleshP = class'KFZedVoiceChanger'.default.bFleshP;
 	bPatty = class'KFZedVoiceChanger'.default.bPatty;
 	bBloat = class'KFZedVoiceChanger'.default.bBloat;
+	bClot = class'KFZedVoiceChanger'.default.bClot;
+	bCrawler = class'KFZedVoiceChanger'.default.bCrawler;
+	bGib = class'KFZedVoiceChanger'.default.bGib;
+	bDecap = class'KFZedVoiceChanger'.default.bDecap;
 
 	// Siren
 	/*if (bSiren){
-		log("-----|| Siren Custom Sound Enabled ||-----");
-		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.siren.Siren_AttackScream');
+		MutLog("-----|| Siren Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Siren_AttackScream');
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("Siren_Demon_Scream");
 	}*/
 
+	// Clot
+	if (bClot){
+		MutLog("-----|| Clot Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Clot_Death');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("ClotDeath");
+	}
+
+	// Crawler
+	if (bCrawler){
+		MutLog("-----|| Crawler Custom Sound Enabled ||-----");
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Crawler_Death');
+		S.Sounds.Length = 1;
+		S.Sounds[0] = LoadSound("CrawlerDeath");
+	}
+
+	// ZED Gib Sound - Remove Sound
+	if (bGib){
+		MutLog("-----|| Gib Custom Sound Enabled ||-----");
+		class'ZombieClot_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieCrawler_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieFleshpound_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieGorefast_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieHusk_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieScrake_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieSiren_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+		class'ZombieStalker_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.NoSound';
+	}
+
+	// ZED Decap - Pop Sound
+	if (bDecap){
+		MutLog("-----|| Decap Custom Sound Enabled ||-----");
+		class'ZombieBloat_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieClot_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieCrawler_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieFleshpound_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieGorefast_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieHusk_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieScrake_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieSiren_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+		class'ZombieStalker_STANDARD'.default.DecapitationSound = Sound'KF_VP.DecapPop';
+	}
+
 	// Scrake - KF2 Scrake
 	if (bScrake){
-		log("-----|| Scrake Custom Sound Enabled ||-----");
+		MutLog("-----|| Scrake Custom Sound Enabled ||-----");
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Scrake_Attack');
 		S.Sounds.Length = 3;
 		S.Sounds[0] = LoadSound("ScrakeAttack1");
@@ -40,10 +86,9 @@ function Initialized()
 		S.Sounds[2] = LoadSound("ScrakeAttack3");
 	}
 	
-
 	// FleshPound - Godzilla
 	if (bFleshP){
-		log("-----|| Fleshpound Custom Sound Enabled ||-----");
+		MutLog("-----|| Fleshpound Custom Sound Enabled ||-----");
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.FP_Rage');
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("FP_godzilla_rage");
@@ -51,7 +96,7 @@ function Initialized()
 
 	// Bloat - Explosion
 	if (bBloat){
-		log("-----|| Bloat Custom Sound Enabled ||-----");
+		MutLog("-----|| Bloat Custom Sound Enabled ||-----");
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Bloat_DeathPop');
 		S.Sounds.Length = 3;
 		S.Sounds[0] = LoadSound("BoomerPop1");
@@ -64,18 +109,17 @@ function Initialized()
 		S.Sounds[2] = LoadSound("BloatChallenge3");
 		S.Sounds[3] = LoadSound("BloatChallenge4");
 		class'ZombieBloat_STANDARD'.default.HeadLessDeathSound = Sound'KF_VP.BoomerPop1';
-		log("-----|| Default Bloat Headless Sound: " $class'ZombieBloat_STANDARD'.default.HeadLessDeathSound$ " ||-----");
+	    // MutLog("-----|| Default Bloat Headless Sound: " $class'ZombieBloat_STANDARD'.default.HeadLessDeathSound$ " ||-----");
 	}
 
 	// Patty
 	if (bPatty){
-		log("-----|| Patty Custom Sound Enabled ||-----");
+		MutLog("-----|| Patty Custom Sound Enabled ||-----");
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance');
-		S.Sounds.Length = 4;
+		S.Sounds.Length = 3;
 		S.Sounds[0] = LoadSound("PattyEntrance1");
 		S.Sounds[1] = LoadSound("PattyEntrance2");
 		S.Sounds[2] = LoadSound("PattyEntrance3");
-		S.Sounds[3] = LoadSound("PattyEntrance4");
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("PattyEntrance_Scream");
@@ -145,6 +189,11 @@ static final function string GetVoicePackage()
 static final function Sound LoadSound( string N )
 {
 	return Sound(DynamicLoadObject(VoicePackageName$"."$N,Class'Sound'));
+}
+
+simulated function MutLog(string s)
+{
+    log(s, 'ZedVoiceChanger');
 }
 
 defaultproperties
