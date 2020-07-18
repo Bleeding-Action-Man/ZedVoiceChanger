@@ -113,6 +113,7 @@ defaultproperties
     Description="Changes some voice-lines sounds for some ZEDs - More sounds added regularly!"
     bAlwaysRelevant=True
     RemoteRole=ROLE_SimulatedProxy
+	bNetNotify=True
 
 	// Bool Vars
 	// bSiren=True
