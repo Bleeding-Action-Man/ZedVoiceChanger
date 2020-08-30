@@ -168,7 +168,7 @@ simulated function MutLog(string s)
 }
 
 simulated function ApplyMandatoryChanges(){
-	MutLog("-----|| Changing Monster Class for Siren to CIRCUS ||-----");
+	MutLog("-----|| Changing Monster Collection ||-----");
 	class'KFGameType'.Default.MonsterCollection = class'KFMonstersCustomCollection';
     class'KFGameType'.Default.SpecialEventMonsterCollections[0] = class'KFMonstersCustomCollection';
 }
