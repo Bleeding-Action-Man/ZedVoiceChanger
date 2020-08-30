@@ -9,12 +9,14 @@ Class KFZedVoiceChanger extends Mutator config(KFZedVoiceChanger);
 
 #exec OBJ LOAD FILE=KF_VP.uax
 
-var config bool bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap;
+var() config bool bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap;
+var bool Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
 
 replication
 {
 	unreliable if (Role == ROLE_Authority)
-		bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap;
+		bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap,
+		Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
 }
 
 function PreBeginPlay()
@@ -23,25 +25,38 @@ function PreBeginPlay()
 	AddToPackageMap(Class'KFVP'.Static.GetVoicePackage());
 }
 
-simulated function PostNetBeginPlay()
+simulated function PostBeginPlay()
 {
-    super.PostNetBeginPlay();
-	// Future code goes here if values needed from the server
+	Scrake = bScrake;
+	FleshP = bFleshP;
+	Patty = bPatty;
+	Bloat = bBloat;
+	Clot = bClot;
+	Crawler = bCrawler;
+	Gib = bGib;
+	Decap = bDecap;
 }
 
-simulated function PostNetReceive()
+simulated function PostNetBeginPlay()
 {
-    super.PostNetReceive();
-    TimeStampLog("-----|| Server Vars Replicated ||-----");
-	// default.bSiren = bSiren;
-    default.bScrake = bScrake;
-    default.bFleshP = bFleshP;
-    default.bPatty = bPatty;
-    default.bBloat = bBloat;
-    default.bClot = bClot;
-	default.bCrawler = bCrawler;
-	default.bGib = bGib;
-	default.bDecap = bDecap;
+	// Future code goes here if values needed from the server
+	TimeStampLog("-----|| Server Vars Replicated ||-----");
+	MutLog("-----|| Scrake: " $Scrake$ " ||-----");
+	MutLog("-----|| FleshP: " $FleshP$ " ||-----");
+	MutLog("-----|| Patty: " $Patty$ " ||-----");
+	MutLog("-----|| Bloat: " $Bloat$ " ||-----");
+	MutLog("-----|| Clot: " $Clot$ " ||-----");
+	MutLog("-----|| Crawler: " $Crawler$ " ||-----");
+	MutLog("-----|| Gib: " $Gib$ " ||-----");
+	MutLog("-----|| Decap: " $Decap$ " ||-----");
+    class'KFVP'.default.bScrake = Scrake;
+    class'KFVP'.default.bFleshP = FleshP;
+    class'KFVP'.default.bPatty = Patty;
+    class'KFVP'.default.bBloat = Bloat;
+    class'KFVP'.default.bClot = Clot;
+	class'KFVP'.default.bCrawler = Crawler;
+	class'KFVP'.default.bGib = Gib;
+	class'KFVP'.default.bDecap = Decap;
 }
 
 simulated function Tick( float Delta )
@@ -50,7 +65,7 @@ simulated function Tick( float Delta )
 	if( Level.NetMode!=NM_DedicatedServer){
 		Class'KFVP'.Static.InitializeSoundsFor(Level.GetLocalPlayerController());
 	}
-    
+
 	Disable('Tick');
 }
 
@@ -109,20 +124,9 @@ defaultproperties
 {
 	// Mut Vars
     GroupName="KF-ZedVoiceChanger"
-    FriendlyName="ZED Voice Changer Mut - v2.0"
-    Description="Changes some voice-lines sounds for some ZEDs - More sounds added regularly!"
+    FriendlyName="ZED Voice Changer Mut - v2.1"
+    Description="Apply Custom sounds for some ZEDs"
     bAlwaysRelevant=True
     RemoteRole=ROLE_SimulatedProxy
 	bNetNotify=True
-
-	// Bool Vars
-	// bSiren=True
-	bScrake=True
-	bFleshP=True
-	bPatty=True
-	bBloat=True
-    bClot=True
-	bCrawler=True
-	bGib=True
-	bDecap=True
 }

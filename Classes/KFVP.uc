@@ -14,17 +14,6 @@ function Initialized()
 {
 	local SoundGroup S;
 
-	// Bool Vars to check if enabled or disabled
-	// bSiren = class'KFZedVoiceChanger'.default.bSiren;
-	bScrake = class'KFZedVoiceChanger'.default.bScrake;
-	bFleshP = class'KFZedVoiceChanger'.default.bFleshP;
-	bPatty = class'KFZedVoiceChanger'.default.bPatty;
-	bBloat = class'KFZedVoiceChanger'.default.bBloat;
-	bClot = class'KFZedVoiceChanger'.default.bClot;
-	bCrawler = class'KFZedVoiceChanger'.default.bCrawler;
-	bGib = class'KFZedVoiceChanger'.default.bGib;
-	bDecap = class'KFZedVoiceChanger'.default.bDecap;
-
 	// Siren
 	/*if (bSiren){
 		MutLog("-----|| Siren Custom Sound Enabled ||-----");
@@ -74,7 +63,7 @@ function Initialized()
 		S.Sounds[1] = LoadSound("ScrakeAttack2");
 		S.Sounds[2] = LoadSound("ScrakeAttack3");
 	}
-	
+
 	// FleshPound - Godzilla
 	if (bFleshP){
 		MutLog("-----|| Fleshpound Custom Sound Enabled ||-----");
@@ -111,7 +100,7 @@ function Initialized()
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("PattyEntrance_Scream");
 	}
-	
+
 	Class'ZombieScrake'.Default.TransientSoundVolume = 2.5f;
 	Class'ZombieScrake'.Default.TransientSoundRadius = 1500.f;
 	Class'ZombieFleshPound'.Default.TransientSoundVolume = 2.f;
@@ -137,7 +126,7 @@ function NotifyLevelChange()
 final function CacheSound( out SoundGroup S, SoundGroup In )
 {
 	local int i;
-	
+
 	S = In;
 	i = Cache.Length;
 	Cache.Length = i+1;
@@ -185,4 +174,14 @@ simulated function MutLog(string s)
 
 defaultproperties
 {
+	// Bool Vars
+	// bSiren=True
+	bScrake=True
+	bFleshP=True
+	bPatty=True
+	bBloat=True
+    bClot=True
+	bCrawler=True
+	bGib=True
+	bDecap=True
 }
