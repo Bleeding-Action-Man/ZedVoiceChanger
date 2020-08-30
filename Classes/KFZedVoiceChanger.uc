@@ -15,8 +15,8 @@ var bool Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
 replication
 {
 	unreliable if (Role == ROLE_Authority)
-		bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap,
-		Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
+		bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap,
+		Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
 }
 
 function PreBeginPlay()
@@ -27,6 +27,7 @@ function PreBeginPlay()
 
 simulated function PostBeginPlay()
 {
+	Siren = bSiren;
 	Scrake = bScrake;
 	FleshP = bFleshP;
 	Patty = bPatty;
@@ -41,6 +42,7 @@ simulated function PostNetBeginPlay()
 {
 	// Future code goes here if values needed from the server
 	TimeStampLog("-----|| Server Vars Replicated ||-----");
+	MutLog("-----|| Siren: " $Siren$ " ||-----");
 	MutLog("-----|| Scrake: " $Scrake$ " ||-----");
 	MutLog("-----|| FleshP: " $FleshP$ " ||-----");
 	MutLog("-----|| Patty: " $Patty$ " ||-----");
@@ -49,6 +51,8 @@ simulated function PostNetBeginPlay()
 	MutLog("-----|| Crawler: " $Crawler$ " ||-----");
 	MutLog("-----|| Gib: " $Gib$ " ||-----");
 	MutLog("-----|| Decap: " $Decap$ " ||-----");
+
+	class'KFVP'.default.bSiren = Siren;
     class'KFVP'.default.bScrake = Scrake;
     class'KFVP'.default.bFleshP = FleshP;
     class'KFVP'.default.bPatty = Patty;
@@ -72,7 +76,7 @@ simulated function Tick( float Delta )
 static function FillPlayInfo(PlayInfo PlayInfo)
 {
 	Super.FillPlayInfo(PlayInfo);
-    // PlayInfo.AddSetting("KFZedVoiceChanger", "bSiren", "Siren", 0, 0, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bSiren", "Siren", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bScrake", "Scrake", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bFleshP", "FleshPound", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bPatty", "Patty Daddy", 0, 0, "check");
@@ -87,10 +91,10 @@ static function string GetDescriptionText(string SettingName)
 {
 	switch(SettingName)
 	{
-		// case "bSiren":
-		//	return "Replaces Siren scream with a Demon Screech";
+		case "bSiren":
+			return "Replaces Siren scream with a Demon Screech";
         case "bScrake":
-			return "Replaces Scrake attacks with Killing Floor 2 Scrakes Voices";
+			return "Replaces Scrake sound with Blood Axe Chaac from SMITE";
         case "bFleshP":
 			return "Replaces Fleshpound rage with Godzilla Scream";
 		case "bPatty":
@@ -124,8 +128,8 @@ defaultproperties
 {
 	// Mut Vars
     GroupName="KF-ZedVoiceChanger"
-    FriendlyName="ZED Voice Changer Mut - v2.1"
-    Description="Apply Custom sounds for some ZEDs"
+    FriendlyName="ZED Voice Changer Mut - v3.0"
+    Description="Apply Custom sounds for some ZEDs & Mixes up ZED Skins; By Vel-San & Marco"
     bAlwaysRelevant=True
     RemoteRole=ROLE_SimulatedProxy
 	bNetNotify=True

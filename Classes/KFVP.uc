@@ -3,24 +3,28 @@ Class KFVP extends Interaction;
 const VoicePackageName="KF_VP";
 var bool bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap;
 
-struct FSoundCacheType
+struct SoundGroupStruct
 {
 	var SoundGroup S;
 	var array<Sound> L;
 };
-var array<FSoundCacheType> Cache;
+
+var array<SoundGroupStruct> Cache;
 
 function Initialized()
 {
 	local SoundGroup S;
 
+	// Change ZED Skins & Fix for SirenScream
+	ApplyMandatoryChanges();
+
 	// Siren
-	/*if (bSiren){
+	if (bSiren){
 		MutLog("-----|| Siren Custom Sound Enabled ||-----");
-		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Siren_AttackScream');
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd_CIRCUS.Siren_AttackScream');
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("Siren_Demon_Scream");
-	}*/
+	}
 
 	// Clot
 	if (bClot){
@@ -54,20 +58,21 @@ function Initialized()
 		S.Sounds[0] = LoadSound("DecapPop");
 	}
 
-	// Scrake - KF2 Scrake
+	// Scrake - Chaac BloodBath SMITE
 	if (bScrake){
 		MutLog("-----|| Scrake Custom Sound Enabled ||-----");
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Scrake_Attack');
-		S.Sounds.Length = 3;
+		S.Sounds.Length = 4;
 		S.Sounds[0] = LoadSound("ScrakeAttack1");
 		S.Sounds[1] = LoadSound("ScrakeAttack2");
 		S.Sounds[2] = LoadSound("ScrakeAttack3");
+		S.Sounds[3] = LoadSound("ScrakeAttack4");
 	}
 
 	// FleshPound - Godzilla
 	if (bFleshP){
 		MutLog("-----|| Fleshpound Custom Sound Enabled ||-----");
-		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.FP_Rage');
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd_CIRCUS.FP_Rage');
 		S.Sounds.Length = 1;
 		S.Sounds[0] = LoadSound("FP_godzilla_rage");
 	}
@@ -75,12 +80,12 @@ function Initialized()
 	// Bloat - Explosion
 	if (bBloat){
 		MutLog("-----|| Bloat Custom Sound Enabled ||-----");
-		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Bloat_DeathPop');
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd_HALLOWEEN.Bloat_DeathPop');
 		S.Sounds.Length = 3;
 		S.Sounds[0] = LoadSound("BoomerPop1");
 		S.Sounds[1] = LoadSound("BoomerPop2");
 		S.Sounds[2] = LoadSound("BoomerPop3");
-		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Bloat_Challenge');
+		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd_HALLOWEEN.Bloat_Challenge');
 		S.Sounds.Length = 4;
 		S.Sounds[0] = LoadSound("BloatChallenge1");
 		S.Sounds[1] = LoadSound("BloatChallenge2");
@@ -96,15 +101,11 @@ function Initialized()
 		S.Sounds[0] = LoadSound("PattyEntrance1");
 		S.Sounds[1] = LoadSound("PattyEntrance2");
 		S.Sounds[2] = LoadSound("PattyEntrance3");
-		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
-		S.Sounds.Length = 1;
-		S.Sounds[0] = LoadSound("PattyEntrance_Scream");
+		// Entrance Disabled in v3.0
+		// CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
+		// S.Sounds.Length = 1;
+		// S.Sounds[0] = LoadSound("PattyEntrance_Scream");
 	}
-
-	Class'ZombieScrake'.Default.TransientSoundVolume = 2.5f;
-	Class'ZombieScrake'.Default.TransientSoundRadius = 1500.f;
-	Class'ZombieFleshPound'.Default.TransientSoundVolume = 2.f;
-	Class'ZombieFleshPound'.Default.TransientSoundRadius = 2000.f;
 }
 
 function NotifyLevelChange()
@@ -115,12 +116,6 @@ function NotifyLevelChange()
 	for( i=0; i<Cache.Length; ++i )
 		Cache[i].S.Sounds = Cache[i].L;
 	Cache.Length = 0;
-
-	Class'ZombieScrake'.Default.TransientSoundVolume = 2.f;
-	Class'ZombieScrake'.Default.TransientSoundRadius = 500.f;
-	Class'ZombieFleshPound'.Default.TransientSoundVolume = 1.f;
-	Class'ZombieFleshPound'.Default.TransientSoundRadius = 500.f;
-
 }
 
 final function CacheSound( out SoundGroup S, SoundGroup In )
@@ -172,10 +167,16 @@ simulated function MutLog(string s)
     log(s, 'ZedVoiceChanger');
 }
 
+simulated function ApplyMandatoryChanges(){
+	MutLog("-----|| Changing Monster Class for Siren to CIRCUS ||-----");
+	class'KFGameType'.Default.MonsterCollection = class'KFMonstersCustomCollection';
+    class'KFGameType'.Default.SpecialEventMonsterCollections[0] = class'KFMonstersCustomCollection';
+}
+
 defaultproperties
 {
 	// Bool Vars
-	// bSiren=True
+	bSiren=True
 	bScrake=True
 	bFleshP=True
 	bPatty=True

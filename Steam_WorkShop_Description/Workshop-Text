@@ -1,62 +1,40 @@
-This Mutator replaces:
-
-- Fleshpound rage sound with '2004 Godzilla Screech'
-
-- Scrake Attacks (When he's screwing you with the saw) to KF2 Scrake Sounds ( 3 Different Effects )
-
-- Patty Entrance and Entrance Scream with:
------ Catch me outside how about that
------ It's Joooooohhhhnnn Cena
------ I will find you and i will kill you
------ Jojo's NANI (Entrance Scream)
-
-- Bloat Explosion & idle talking as Boomer from L4D2
------ Idle Challenge (4 Different Sounds)
-
-- All Zed Headshots with a POP Sound
-
-- Clot Death sound with Roblox ' OOF ' sound
-
-- Crawler Death sound with Bug-Squish sound
-
-- [strike]Siren has a Demon Screech for the scream[/strike] Disabled for now
+Mutator that applies different sound effects for ZEDs, also, mixes up ZED Skins (Summer & Halloween)
 
 NOTE:
 
-- This works server-side too. Meaning any player who joins your server will have the sound effect as well
 - Based off Marco's Classic Zeds Mut, edited by me to support Sounds instead of SoundGroups only and made each sound selectable instead of changing everything at once
 
-[b][u]Features that might be added[/u][/b]
+[h1][b][u]Features that might be added[/u][/b][/h1]
 
 - I will always update this whenever i have time or find a new sound that suits a ZED. Suggestions are welcome too!
 
-[b][u]Number Of Files[/u][/b]
+[h1][b][u]Number Of Files[/u][/b][/h1]
 
 - 3
 
-[b][u]File Names[/u][/b]
+[h1][b][u]File Names[/u][/b][/h1]
 
 - \System\KFZedVoiceChanger.u
 - \System\KFZedVoiceChanger.ucl
 
 - \Sounds\KF_VP.uax
 
-[b][u]Usage[/u][/b]
+[h1][b][u]Usage[/u][/b][/h1]
 
-1- Subscribe or download manually (recommended)
+1- Subscribe or download manually (Recommended)
 2- Launch the game and wait to see 'Completed'
 3- Restart the game and you can see the mutators in your list
 
-[b][u]Class Names[/u][/b]
+[h1][b][u]Class Names[/u][/b][/h1]
 
 - Mut: KFZedVoiceChanger.KFZedVoiceChanger
 
-[b][u]Known Bugs[/u][/b]
+[h1][b][u]Known Bugs[/u][/b][/h1]
 
 You Tell Me.
 
-[b][u]Manual Download Links (Recommended)[/u][/b]
+[h1][b][u]Manual Download Links (Recommended)[/u][/b][/h1]
 
-You can find it under 'Not Whitelisted' folder named 'KF-ZedVoiceChanger-v2.1'
+You can find it under 'Not Whitelisted' folder named 'KF-ZedVoiceChanger-v3.0'
 
 MEGA Link: https://mega DOT nz/folder/YDoEmKiC#s6FGAtgh40-TvB4bHsLaMQ
