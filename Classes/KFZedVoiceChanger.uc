@@ -9,14 +9,14 @@ Class KFZedVoiceChanger extends Mutator config(KFZedVoiceChanger);
 
 #exec OBJ LOAD FILE=KF_VP.uax
 
-var() config bool bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap;
-var bool Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
+var() config bool bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap, bDEBUG;
+var bool Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap, DEBUG;
 
 replication
 {
 	unreliable if (Role == ROLE_Authority)
-		bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap,
-		Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap;
+		bSiren, bScrake, bFleshP, bPatty, bBloat, bClot, bCrawler, bGib, bDecap, bDEBUG,
+		Siren, Scrake, FleshP, Patty, Bloat, Clot, Crawler, Gib, Decap, DEBUG;
 }
 
 function PreBeginPlay()
@@ -36,21 +36,25 @@ simulated function PostBeginPlay()
 	Crawler = bCrawler;
 	Gib = bGib;
 	Decap = bDecap;
+	DEBUG = bDEBUG;
+	SetTimer(0.1,False);
 }
 
 simulated function PostNetBeginPlay()
 {
 	// Future code goes here if values needed from the server
 	TimeStampLog("-----|| Server Vars Replicated ||-----");
-	MutLog("-----|| Siren: " $Siren$ " ||-----");
-	MutLog("-----|| Scrake: " $Scrake$ " ||-----");
-	MutLog("-----|| FleshP: " $FleshP$ " ||-----");
-	MutLog("-----|| Patty: " $Patty$ " ||-----");
-	MutLog("-----|| Bloat: " $Bloat$ " ||-----");
-	MutLog("-----|| Clot: " $Clot$ " ||-----");
-	MutLog("-----|| Crawler: " $Crawler$ " ||-----");
-	MutLog("-----|| Gib: " $Gib$ " ||-----");
-	MutLog("-----|| Decap: " $Decap$ " ||-----");
+	if(DEBUG){
+		MutLog("-----|| DEBUG - Siren: " $Siren$ " ||-----");
+		MutLog("-----|| DEBUG - Scrake: " $Scrake$ " ||-----");
+		MutLog("-----|| DEBUG - FleshP: " $FleshP$ " ||-----");
+		MutLog("-----|| DEBUG - Patty: " $Patty$ " ||-----");
+		MutLog("-----|| DEBUG - Bloat: " $Bloat$ " ||-----");
+		MutLog("-----|| DEBUG - Clot: " $Clot$ " ||-----");
+		MutLog("-----|| DEBUG - Crawler: " $Crawler$ " ||-----");
+		MutLog("-----|| DEBUG - Gib: " $Gib$ " ||-----");
+		MutLog("-----|| DEBUG - Decap: " $Decap$ " ||-----");
+	}
 
 	class'KFVP'.default.bSiren = Siren;
     class'KFVP'.default.bScrake = Scrake;
@@ -65,7 +69,7 @@ simulated function PostNetBeginPlay()
 
 simulated function Tick( float Delta )
 {
-	// Make sure client did download the voice pack too.
+	// Forces client to download the VoicePack
 	if( Level.NetMode!=NM_DedicatedServer){
 		Class'KFVP'.Static.InitializeSoundsFor(Level.GetLocalPlayerController());
 	}
@@ -85,6 +89,8 @@ static function FillPlayInfo(PlayInfo PlayInfo)
     PlayInfo.AddSetting("KFZedVoiceChanger", "bCrawler", "Crawler", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bGib", "Gib", 0, 0, "check");
     PlayInfo.AddSetting("KFZedVoiceChanger", "bDecap", "Decap", 0, 0, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bDEBUG", "DEBUG", 0, 0, "check");
+
 }
 
 static function string GetDescriptionText(string SettingName)
@@ -109,6 +115,8 @@ static function string GetDescriptionText(string SettingName)
 			return "Removes ZED Death sound after being killed by a headshot, works best with 'Decap' Enabled!";
 		case "bDecap":
 			return "POP Sound for Headshots! POP POP POP!";
+		case "bDEBUG":
+			return "Shows some Debugging messages in the LOG. Better to keep off!";
 		default:
 			return Super.GetDescriptionText(SettingName);
 	}
@@ -124,11 +132,33 @@ simulated function MutLog(string s)
     log(s, 'ZedVoiceChanger');
 }
 
+function Timer(){
+	ApplyMonsterCollection();
+}
+
+simulated function ApplyMonsterCollection(){
+	local KFGameType KF;
+	KF = KFGameType(Level.Game);
+
+	MutLog("-----|| Changing Monster Collection ||-----");
+
+	KF.MonsterCollection = class'KFMonstersCustomCollection';
+    KF.SpecialEventMonsterCollections[0] = class'KFMonstersCustomCollection';
+
+    KF.PrepareSpecialSquads();
+    KF.LoadUpMonsterList();
+
+	if(DEBUG){
+	MutLog("-----|| DEBUG - Monster Collection: " $KF.MonsterCollection$ " ||-----");
+	MutLog("-----|| DEBUG - SpecialEventMonsterCollections: " $KF.SpecialEventMonsterCollections[0]$ " ||-----");
+	}
+}
+
 defaultproperties
 {
 	// Mut Vars
     GroupName="KF-ZedVoiceChanger"
-    FriendlyName="ZED Voice Changer Mut - v3.0"
+    FriendlyName="ZED Voice Changer Mut - v3.1"
     Description="Apply Custom sounds for some ZEDs & Mixes up ZED Skins; By Vel-San & Marco"
     bAlwaysRelevant=True
     RemoteRole=ROLE_SimulatedProxy

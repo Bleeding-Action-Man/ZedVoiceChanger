@@ -15,9 +15,6 @@ function Initialized()
 {
 	local SoundGroup S;
 
-	// Change ZED Skins & Fix for SirenScream
-	ApplyMandatoryChanges();
-
 	// Siren
 	if (bSiren){
 		MutLog("-----|| Siren Custom Sound Enabled ||-----");
@@ -165,12 +162,6 @@ static final function Sound LoadSound( string N )
 simulated function MutLog(string s)
 {
     log(s, 'ZedVoiceChanger');
-}
-
-simulated function ApplyMandatoryChanges(){
-	MutLog("-----|| Changing Monster Collection ||-----");
-	class'KFGameType'.Default.MonsterCollection = class'KFMonstersCustomCollection';
-    class'KFGameType'.Default.SpecialEventMonsterCollections[0] = class'KFMonstersCustomCollection';
 }
 
 defaultproperties
