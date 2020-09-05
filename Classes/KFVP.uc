@@ -96,12 +96,6 @@ function Initialized()
 		CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance');
 		S.Sounds.Length = 3;
 		S.Sounds[0] = LoadSound("PattyEntrance1");
-		S.Sounds[1] = LoadSound("PattyEntrance2");
-		S.Sounds[2] = LoadSound("PattyEntrance3");
-		// Entrance Disabled in v3.0
-		// CacheSound(S,SoundGroup'KF_EnemiesFinalSnd.Kev_Entrance_Scream');
-		// S.Sounds.Length = 1;
-		// S.Sounds[0] = LoadSound("PattyEntrance_Scream");
 	}
 }
 
