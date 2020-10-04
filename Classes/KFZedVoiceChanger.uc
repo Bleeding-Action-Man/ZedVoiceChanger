@@ -80,16 +80,16 @@ simulated function Tick( float Delta )
 static function FillPlayInfo(PlayInfo PlayInfo)
 {
 	Super.FillPlayInfo(PlayInfo);
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bSiren", "Siren", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bScrake", "Scrake", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bFleshP", "FleshPound", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bPatty", "Patty Daddy", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bBloat", "Bloat", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bClot", "Clot", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bCrawler", "Crawler", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bGib", "Gib", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bDecap", "Decap", 0, 0, "check");
-    PlayInfo.AddSetting("KFZedVoiceChanger", "bDEBUG", "DEBUG", 0, 0, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bSiren", "Siren", 0, 1, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bScrake", "Scrake", 0, 2, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bFleshP", "FleshPound", 0, 3, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bPatty", "Patty Daddy", 0, 4, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bBloat", "Bloat", 0, 5, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bClot", "Clot", 0, 6, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bCrawler", "Crawler", 0, 7, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bGib", "Gib", 0, 8, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bDecap", "Decap", 0, 9, "check");
+    PlayInfo.AddSetting("KFZedVoiceChanger", "bDEBUG", "Debug", 0, 10, "check");
 
 }
 
@@ -104,9 +104,9 @@ static function string GetDescriptionText(string SettingName)
         case "bFleshP":
 			return "Replaces Fleshpound rage with Godzilla Scream";
 		case "bPatty":
-			return "Memes. Just MEMES.";
+			return "John Cena Entrance";
 		case "bBloat":
-			return "L4D2 Boomer Explosion & Idle Talking";
+			return "L4D2 Boomer Explosion";
         case "bClot":
 			return "Changes headshot death sounds with 'Roblox OOF'";
 		case "bCrawler":
@@ -158,7 +158,7 @@ defaultproperties
 {
 	// Mut Vars
     GroupName="KF-ZedVoiceChanger"
-    FriendlyName="ZED Voice Changer Mut - v3.2"
+    FriendlyName="ZED Voice Changer Mut - v3.3"
     Description="Apply Custom sounds for some ZEDs & Mixes up ZED Skins; By Vel-San & Marco"
     bAlwaysRelevant=True
     RemoteRole=ROLE_SimulatedProxy
