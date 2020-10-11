@@ -158,7 +158,7 @@ defaultproperties
 {
 	// Mut Vars
     GroupName="KF-ZedVoiceChanger"
-    FriendlyName="ZED Voice Changer Mut - v3.3"
+    FriendlyName="ZED Voice Changer Mut - v3.4"
     Description="Apply Custom sounds for some ZEDs & Mixes up ZED Skins; By Vel-San & Marco"
     bAlwaysRelevant=True
     RemoteRole=ROLE_SimulatedProxy
